@@ -24,7 +24,7 @@ function operation() {
     } else if (action === 'Consultar Saldo') {
       getAccountBalance()
     } else if (action === 'Sacar') {
-
+      widthdraw()
     } else if (action === 'Sair') {
       console.log(chalk.bgBlue.black("Obrigado por usar o Account!"));
       process.exit()
@@ -140,6 +140,7 @@ function getAccount(accountName) {
   return JSON.parse(accountJSON)
 }
 
+//  consultar o saldo
 function getAccountBalance() {
   inquirer.prompt([
     {
@@ -158,6 +159,35 @@ function getAccountBalance() {
     console.log(chalk.bgBlue.black(`Olá, o saldo da sua conta é de R$${accountBalance.balance}`))
 
     operation()
+
+  }).catch(err => console.log(err))
+}
+
+// sacar recursos da conta
+function widthdraw() {
+  inquirer.prompt([
+    {
+      name: 'accountName',
+      message: 'Qual o nome da sua conta?'
+    }
+  ]).then((answer) => {
+    const accountName = answer['accountName']
+
+    if (!checkAccount(accountName)) {
+      return widthdraw()
+    }
+
+    inquirer.prompt([
+      {
+        name: 'amount',
+        message: 'Quanto você deseja sacar?'
+      }
+    ]).then((answer) => {
+      const amount = answer['amount']
+      console.log(amount);
+      operation()
+    }).catch(err => console.log(err))
+
 
   }).catch(err => console.log(err))
 }
