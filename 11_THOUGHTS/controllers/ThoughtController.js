@@ -23,7 +23,13 @@ module.exports = class ThoughtController {
     }
 
     const thoughts = user.Thoughts.map((result) => result.dataValues)
-    console.log(thoughts);
+
+    let emptyThoughts = true
+
+    if(thoughts.length > 0) {
+      emptyThoughts = true
+    }
+
     res.render('thoughts/dashboard', {thoughts})
   }
 

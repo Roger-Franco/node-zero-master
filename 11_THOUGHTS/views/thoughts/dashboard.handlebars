@@ -4,6 +4,7 @@
     <a href="/thoughts/add" class="btn">Criar Pensamento</a>
   </div>
   <h3>Seus Pensamentos</h3>
+  {{#if thoughts}}
   <ul>
     {{#each thoughts}}
     <li>
@@ -18,4 +19,10 @@
     </li>
     {{/each}}
   </ul>
+  {{else}}
+  <p>Ainda não há nenhum pensamento seu, comece a criar <a href="/thoughts/add">por aqui!</a></p>
+  {{/if}}
+  {{#if emptyThoughts}}
+  <p>testando emptyThoughts</p>
+  {{/if}}
 </div>
