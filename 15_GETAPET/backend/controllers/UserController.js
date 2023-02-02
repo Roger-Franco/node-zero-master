@@ -102,14 +102,14 @@ module.exports = class UserController {
   static async checkUser(req, res) {
     let currentUser
 
-    console.log(req.headers.authorization);
+    // console.log(req.headers.authorization);
 
     if(req.headers.authorization) {
       const token = getToken(req)
       console.log(token, 'token');
       const decoded = jwt.verify(token, 'nossosecret')
 
-      console.log(decoded, 'decoded');
+      // console.log(decoded, 'decoded');
 
       currentUser = await User.findById(decoded.id)
 
@@ -121,4 +121,18 @@ module.exports = class UserController {
 
     res.status(200).send(currentUser)
   }
+
+  static async getUserById(req, res) {
+    const id = req.params.id
+
+    const user = await User.findById(id).select('-password') // o select retira o password
+
+    if (!user) {
+      res.status(422).json({message: 'Usuário não encontrado!'})
+      return
+    }
+
+    res.status(200).json({user})
+  }
+
 }
