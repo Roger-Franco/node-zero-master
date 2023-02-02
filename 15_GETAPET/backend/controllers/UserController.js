@@ -153,6 +153,8 @@ module.exports = class UserController {
       res.status(422).json({message: 'O nome é obrigatório!'})
       return
     }
+
+    user.name = name
     
     if (!email) {
       res.status(422).json({message: 'O e-mail é obrigatório!'})
@@ -173,15 +175,35 @@ module.exports = class UserController {
       return
     }
 
-    if (!password) {
-      res.status(422).json({message: 'A senha é obrigatório!'})
+    user.phone = phone
+
+    if (password !== confirmpassword) {
+      res.status(422).json({message: 'As senhas não conferem!'})
       return
+    } else if(password === confirmpassword && password !== null) {
+      // creating password
+      const salt = await bcrypt.genSalt(12)
+      const passwordHash = await bcrypt.hash(password, salt)
+      user.password = passwordHash
+    }
+    // console.log(user);
+
+    try {
+      // returns user updated data
+      await User.findOneAndUpdate(
+        {_id: user._id},
+        {$set: user},
+        {new: true}
+      )
+      res.status(200).json({ message: "Usuário atualizado com sucesso!"})
+    } catch (error) {
+      res.status(500).json({message: error})
     }
 
-    if (!confirmpassword) {
-      res.status(422).json({message: 'A confirmação de senha é obrigatório!'})
-      return
-    }
+    // if (!confirmpassword) {
+    //   res.status(422).json({message: 'A confirmação de senha é obrigatório!'})
+    //   return
+    // }
 
   }
 
