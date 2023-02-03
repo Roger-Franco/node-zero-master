@@ -19,6 +19,9 @@ const User = mongoose.model(
     password: {
       type: String
     },
+    image: {
+      type: String,
+    },
     phone: {
       type: String,
       required: true
