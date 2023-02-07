@@ -18,13 +18,13 @@ module.exports = class UserController {
       return
     }
     
-    if (!email) {
-      res.status(422).json({message: 'O e-mail é obrigatório!'})
+    if (!phone) {
+      res.status(422).json({message: 'O telefone é obrigatório!'})
       return
     }
 
-    if (!phone) {
-      res.status(422).json({message: 'O telefone é obrigatório!'})
+    if (!email) {
+      res.status(422).json({message: 'O e-mail é obrigatório!'})
       return
     }
 
