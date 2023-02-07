@@ -5,7 +5,7 @@ export default function useFlashMessage() {
   function setFlashMessage(msg, type) {
     bus.emit('flash', {
       message: msg,
-      typer: type,
+      type: type,
     })
   }
 
