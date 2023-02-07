@@ -10,6 +10,7 @@ import {
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Container from './components/layout/Container';
+import Message from './components/layout/Message';
 
 /* pages */
 import Home from './components/pages/Home';
@@ -24,6 +25,7 @@ function App() {
     <Router>
       <UserProvider>
         <Navbar />
+        <Message />
           <Container>
             <Routes>
               <Route path="/login" element={<Login />} />
