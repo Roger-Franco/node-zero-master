@@ -12,7 +12,8 @@ export default function Input({type, text, name, placeholder, handleOnChange, va
       id={name} 
       placeholder={placeholder} 
       onChange={handleOnChange} 
-      value={value} {...(multiple ? (multiple) : '')}
+      value={value}
+      {...(multiple ? {multiple} : '')}
       />
     </div>
   )
