@@ -3,7 +3,7 @@ import api from '../../../utils/api'
 
 import styles from './Profile.module.css'
 import formStyles from '../../form/Form.module.css'
-import Input from '../../form/input'
+import Input from '../../form/Input'
 
 import useFlashMessage from '../../../hooks/useFlashMessage'
 import RoundedImage from '../../layout/RoundedImage'
