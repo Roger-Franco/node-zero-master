@@ -72,7 +72,7 @@ export default function MyPets() {
         </div>
       ))
       }
-      {pets.length == 0 && <p>Não há Pets cadastrados</p>}
+      {pets.length === 0 && <p>Não há Pets cadastrados</p>}
     </div>
     </section>
   )
